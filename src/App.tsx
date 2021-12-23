@@ -15,7 +15,6 @@ const App = () => {
           <Route exact path="/:page/:slug" component={PagesRender} />
         </Switch>
         <Footer />
-
       </Router>
     </div>
   );
