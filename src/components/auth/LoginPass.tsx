@@ -1,12 +1,15 @@
 import { type } from 'os'
 import React, { useState } from 'react'
-import { InputChange } from '../../utils/TypeScript'
+import {useDispatch} from 'react-redux'
+import { InputChange,FormSubmit } from '../../utils/TypeScript'
+import {login} from '../../redux/actions/authAction'
 
 const LoginPass = () => {
-    const initialState = { account: '', password: '', }
+    const initialState = { email: '', password: '', }
     const [userLogin, setUserLogin] = useState(initialState)
-    const { account, password } = userLogin
+    const { email, password } = userLogin
     const [typePass, setTypePass] = useState(false)
+    const dispatch = useDispatch()
 
 
     const handleChangeInput = (e: InputChange) => {
@@ -14,15 +17,21 @@ const LoginPass = () => {
         setUserLogin({ ...userLogin, [name]: value })
     }
 
+    const handleSubmit = (e:FormSubmit) =>{
+        e.preventDefault()
+        console.log(e)
+        dispatch(login(userLogin))
+    }
+
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="form-group mb-3">
-                <label htmlFor="account">Email</label>
+                <label htmlFor="email">Email</label>
                 <input type="email"
                     className="form-control"
-                    id="account"
-                    name="account"
-                    value={account}
+                    id="email"
+                    name="email"
+                    value={email}
                     onChange={handleChangeInput} />
             </div>
             <div className="form-group mb-3">
@@ -42,7 +51,7 @@ const LoginPass = () => {
             </div>
 
             <button className="btn btn-dark w-100 mt-4"
-                disabled={(account && password) ? false : true}>
+                disabled={(email && password) ? false : true}>
                 Login
             </button>
         </form>
