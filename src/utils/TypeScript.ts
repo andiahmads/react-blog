@@ -5,17 +5,27 @@ export type InputChange = ChangeEvent<HTMLInputElement>
 export type FormSubmit = FormEvent<HTMLFormElement>
 export type RootStore = ReturnType<typeof rootReducer>
 
+//for dynamic page
 export interface IParams {
     page:string
     slug:string
 }
 
 
+//for login
 export interface IUserLogin {
     email:string
     password:string
 }
 
+
+//for register 
+export interface IUserRegister extends IUserLogin {
+    name:string
+    cf_password:string
+}
+
+//for response success
 export interface IUser extends IUserLogin {
     id: string
     UUID: string
@@ -33,6 +43,7 @@ export interface IUser extends IUserLogin {
 //     user:IUser
 // }
 
+//for alert
 export interface IAlert {
     loading?:boolean
     success?:string | string[]

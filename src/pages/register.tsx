@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
+import RegisterForm from '../components/auth/RegisterForm'
+import { Link } from 'react-router-dom'
 
-const register = () => {
+const Register = () => {
+
+
     return (
-        <div>
-            <h1>Register Page</h1>
+        <div className="auth_page">
+            <div className="auth_box">
+                <h3 className="text-uppercase text-center mb-4">
+                    Register
+                </h3>
+                <RegisterForm/>
+                <p className='mt-2'>{`Already have an account ?`}
+                    <Link to={`/login`} style={{ color: 'crimson' }}>
+                        Login now
+                    </Link>
+                </p>
+            </div>
+
         </div>
     )
 }
 
-export default register
+export default Register
